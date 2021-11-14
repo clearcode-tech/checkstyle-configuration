@@ -1,0 +1,189 @@
+<?xml version="1.0"?>
+<!DOCTYPE module PUBLIC
+    "-//Checkstyle//DTD Checkstyle Configuration 1.2//EN"
+    "https://checkstyle.org/dtds/configuration_1_2.dtd">
+<module name="Checker">
+
+  <!-- Проверяет отсутствие символа табуляции('\t') в файлах. -->
+  <module name="FileTabCharacter"/>
+
+
+  <!-- Miscellaneous-->
+
+  <!-- Проверяет, заканчиваются ли файлы пустой строкой. -->
+  <module name="NewlineAtEndOfFile">
+    <property name="fileExtensions" value="java"/>
+  </module>
+
+  <module name="TreeWalker">
+
+    <!-- Whitespace -->
+
+    <!-- Проверяет правильность переноса операторов. Например, при переносе строки оператор + должен переносится. -->
+    <module name="OperatorWrap"/>
+
+    <!-- Проверяет, что нет дублирования пробелов. -->
+    <module name="SingleSpaceSeparator"/>
+
+    <!-- Miscellaneous-->
+
+    <!-- Комментарии должны иметь отступ на том же уровне, что и окружающий код. -->
+    <module name="CommentsIndentationCheck"/>
+
+    <!-- Проверяет наличие пустых файлов. -->
+    <module name="NoCodeInFile"/>
+
+    <!-- Проверяет, TodoComment комментариев. Проверяет только коментарий строчными буквами. -->
+    <module name="TodoComment">
+      <property name="format" value="todo"/>
+    </module>
+
+    <!-- Проверяет, что строки с кодом не заканчиваются комментарием. -->
+    <module name="TrailingComment">
+      <property name="format" value="^\s*@SuppressWarnings.*|^[\s});]*$"/>
+    </module>
+
+    <!-- Проверяет, что тип long определен в верхнем регистре. -->
+    <module name="UpperEll"/>
+
+    <!-- Javadoc-->
+
+    <!-- Порядок javadoc-тегов. Например, @param раньше @return. -->
+    <module name="AtclauseOrder"/>
+
+    <!-- Местоположение javadoc. Например, должен быть перед аннотациями класса, а не после них. -->
+    <module name="InvalidJavadocPosition"/>
+
+    <!-- Местоположение javadoc-тегов. Например, между * и @ не должно быть символов (кроме таких как @code). -->
+    <module name="JavadocBlockTagLocation" />
+
+    <!-- Текст javadoc начинается на следующей строке после /**. -->
+    <module name="JavadocContentLocationCheck"/>
+
+    <!-- @return, если не void. @param для каждого параметра. @throws, если бросает исключение. -->
+    <module name="JavadocMethod">
+      <property name="validateThrows" value="true"/>
+    </module>
+
+    <!-- Строки начинаются со звёздочки. -->
+    <module name="JavadocMissingLeadingAsterisk"/>
+
+    <!-- После * в начале строки идёт пробел. -->
+    <module name="JavadocMissingWhitespaceAfterAsterisk"/>
+
+    <!-- JavadocPackage module - проверяет, что у каждого package есть package-info.java файл. Не используем. -->
+
+    <!-- В javadoc все предложения внутри тегов параграфа. Между параграфами пустая строка. -->
+    <module name="JavadocParagraph"/>
+
+    <!-- Первое предложение javadoc заканчивается точкой. У javadoc'а есть тело. 8. -->
+    <!-- Если добавить checkEmptyJavadoc, то будет 250. Так много из-за enum'ов в классах моделей (там только @see). -->
+    <!-- Проблема модельных enum-ов решается удалением ENUM_CONSTANT_DEF из токенов. Т.е. в представленном варианте 8 ошибок. -->
+    <module name="JavadocStyle">
+      <property name="checkEmptyJavadoc" value="true" />
+      <property name="tokens" value="ANNOTATION_DEF , ANNOTATION_FIELD_DEF , CLASS_DEF , CTOR_DEF , ENUM_DEF , INTERFACE_DEF , METHOD_DEF , PACKAGE_DEF , VARIABLE_DEF , RECORD_DEF , COMPACT_CTOR_DEF" />
+    </module>
+
+    <!-- Отступы - 0 пробелов (для @return после переноса отступа нет). Проверяет валидность html (например, закрытость открытых тегов). -->
+    <module name="JavadocTagContinuationIndentation">
+      <property name="offset" value="0"/>
+      <property name="violateExecutionOnNonTightHtml" value="true"/>
+    </module>
+
+    <!-- Комментирование параметризованных типов. -->
+    <module name="JavadocType"/>
+
+    <!-- У каждой переменной есть javadoc. -->
+    <!-- Отключено для всех кроме public. -->
+    <module name="JavadocVariable">
+      <property name="scope" value="public"/>
+    </module>
+
+    <!-- У каждого метода есть javadoc. Не учитывается @Override. -->
+    <module name="MissingJavadocMethod">
+      <!-- Исключая конструкторы. -->
+      <property name="tokens" value="METHOD_DEF, ANNOTATION_FIELD_DEF" />
+    </module>
+
+    <!-- MissingJavadocPackage - проверяет комментарии в файле package-info.java. Не используем. -->
+
+    <!-- У каждого класса/интерфейса есть javadoc. -->
+    <module name="MissingJavadocType"/>
+
+    <!-- Теги не должны быть без описания (например, не просто @throws IllegalStateException, но и комментарий). -->
+    <module name="NonEmptyAtclauseDescription"/>
+
+    <!-- Пустая строка перед телом javadoc и всеми тегами. -->
+    <module name="RequireEmptyLineBeforeBlockTagGroup"/>
+
+    <!-- SingleLineJavadoc - проверяет, что если нет тегов и может поместиться в одну строку, то сделать это. Не используем. -->
+    <!-- SummaryJavadoc - позволяет запретить какие-то фразы в первом предложении. Позволяет указать, каким символом должно заканчиваться первое предложение. -->
+    <!-- WriteTag - обязать использовать конкретные теги для конкретных сущностей. (например, author для каждого класса). -->
+
+
+    <!-- Metrics https://checkstyle.sourceforge.io/config_metrics.html-->
+
+    <!-- Классы не должны содержать много экземпляров других классов. -->
+    <module name="ClassDataAbstractionCoupling"/>
+
+    <!-- Количество линейно независимых маршрутов(цикломатическая сложность) в методе не должно большим. -->
+    <module name="CyclomaticComplexity"/>
+
+    <!-- Количество ациклических путей выполнения через метод не должно большим. -->
+    <module name="NPathComplexity"/>
+
+    <!-- Методы и классы не должны быть длинными, не учитывает пустые строки и переносы. -->
+    <module name="JavaNCSS">
+      <property name="methodMaximum" value="30"/>
+      <property name="classMaximum" value="200"/>
+    </module>
+
+    <!-- Класс не должен зависеть от большого количества других классов. Не учитываются использования классов, заданных регулярными выражениями.  -->
+    <module name="ClassFanOutComplexity">
+      <property name="max" value="30"/>
+      <property name="excludeClassesRegexps" value=".*Service$"/>
+      <property name="excludeClassesRegexps" value=".*Cache$"/>
+      <property name="excludeClassesRegexps" value=".*Validator$"/>
+      <property name="excludeClassesRegexps" value=".*Id$"/>
+    </module>
+
+
+    <!-- Whitespaces, linebreaks, methods order -->
+
+    <!-- Проверяет корректно расставленные пробелы. -->
+    <module name="WhitespaceAround"/>
+
+    <!-- Проверяет что открывающая скобка на той же строке, что и предшествующее выражение. -->
+    <module name="LeftCurly"/>
+
+    <!-- Проверяет что перед символами [., ;, ..., :] нет пробелов и переносов строк. -->
+    <module name="NoWhitespaceBefore"/>
+
+    <!-- Проверяет, что после точки, запятой и перечисленных литералов есть пробел. -->
+    <module name="WhitespaceAfter">
+      <property name="tokens" value="COMMA, SEMI, LITERAL_IF, LITERAL_ELSE, LITERAL_WHILE, LITERAL_DO, LITERAL_FOR"/>
+    </module>
+
+    <!-- Проверяет отсутствие пробелов после открывающей и перед закрывающей круглой скобкой. -->
+    <module name="ParenPad"/>
+
+    <!-- Проверяет отсутствие пробелов между методом и параметрами. -->
+    <module name="MethodParamPad"/>
+
+    <!-- Проверяет отсутствие лишних пробелов в использованиях генериков. -->
+    <module name="GenericWhitespace"/>
+
+    <!-- Проверяет, что между полями и методами есть пустая строка. -->
+    <module name="EmptyLineSeparator"/>
+
+    <!-- Проверяет что перегруженные методы идут в правильном порядке. -->
+    <module name="OverloadMethodsDeclarationOrder"/>
+
+  </module>
+
+  <!-- Модуль для задания пути файла исключений. -->
+  <module name="SuppressionFilter">
+    <property name="file" value="./checkstyle-suppression.xml"/>
+  </module>
+</module>
+
