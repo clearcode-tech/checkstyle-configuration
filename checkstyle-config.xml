@@ -25,6 +25,9 @@
     <!-- Проверяет порядок модификаторов элемента. Например, final private не правильно -->
     <module name="ModifierOrder"/>
 
+    <!-- Проверяет наличие ненужных final. -->
+    <module name="RedundantModifier"/>
+
     <!--  Naming Conventions -->
 
     <!-- Проверяет, что наименования abstract классов начинаются со слова Abstract. -->
