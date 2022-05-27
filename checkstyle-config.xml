@@ -15,10 +15,69 @@
     <property name="fileExtensions" value="java"/>
   </module>
 
+  <!-- Regexp -->
+
+  <!-- Проверяет, что на одной строке нет более двух действий над stream. -->
+  <module name="RegexpSingleline">
+    <property name="format" value="(?!.util)\.stream\(\)\..*\)\..*\)\." />
+    <property name="message" value="More than 2 action on stream can't be on one line." />
+  </module>
+
   <module name="TreeWalker">
 
     <!-- Задаёт табуляцию в 4 пробела, а не 8. Иначе модуль проверки длины строки LineLength работает неправильно -->
     <property name="tabWidth" value="4"/>
+
+    <!-- Regexp -->
+
+    <!-- Проверяет наличие пустой строки после {, если перед ним не было переносов строки. -->
+    <module name="Regexp">
+      <property name="format" value="((?:(\S\)|(try|finally))))\s\{\n." />
+      <property name="illegalPattern" value="true" />
+      <property name="message" value="There must be empty line after the {." />
+    </module>
+
+    <!-- Проверяет наличие типа в параметрах лямбда выражений. -->
+    <module name="Regexp">
+      <property name="format" value="\([a-zA-Z]*(^\))*\s->" />
+      <property name="illegalPattern" value="true" />
+      <property name="message" value="There must be specified type of variable in lambda." />
+    </module>
+
+    <!-- Проверяет, что в javadoc'ах нет больше одной пустой строки подряд и в конце каждого предложения есть точка. -->
+    <module name="Regexp">
+      <property name="format" value="^\s*\*\s(?!@see)[^\n*]*[^.>/?O)]\n\s*\*(\s@|\n|\/)" />
+      <property name="illegalPattern" value="true" />
+      <property name="message" value="Must end with point or can't be two empty line in comment." />
+    </module>
+
+    <!-- Проверяет, что комментарии в коде после // имеют пробел. -->
+    <module name="Regexp">
+      <property name="format" value="^\s*\/\/[^a-zT\s]" />
+      <property name="illegalPattern" value="true" />
+      <property name="message" value="Must be space after //." />
+    </module>
+
+    <!-- Проверяет наличие пустой строки перед концом региона. -->
+    <module name="Regexp">
+      <property name="format" value="[^\s][ \t]*\n[ \t]*[^\n][ \t]*\/\/endregion" />
+      <property name="illegalPattern" value="true" />
+      <property name="message" value="Must be empty line before endregion." />
+    </module>
+
+    <!-- Проверяет отсутствие более одной пустой строки. -->
+    <module name="Regexp">
+      <property name="format" value="\n\n\n" />
+      <property name="illegalPattern" value="true" />
+      <property name="message" value="Must be only one empty line." />
+    </module>
+
+    <!-- Проверяет отсутствие пустой строки перед концом комментария. -->
+    <module name="Regexp">
+      <property name="format" value="\*\n\s*\*\/" />
+      <property name="illegalPattern" value="true" />
+      <property name="message" value="Can't be empty line after end comment." />
+    </module>
 
     <!-- Modifiers -->
 
