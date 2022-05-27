@@ -386,21 +386,21 @@
     <module name="MatchXpath">
       <property name="query" value="//VARIABLE_DEF[.//LITERAL_PRIVATE and
       following-sibling::VARIABLE_DEF[.//LITERAL_PUBLIC]]"/>
-      <message key="matchxpath.match" value="Private variables must appear after public variables"/>
+      <message key="matchxpath.match" value="Private fields must appear after public fields"/>
     </module>
 
     <!-- Проверяет, что private поля следуют строго за protected полями. -->
     <module name="MatchXpath">
       <property name="query" value="//VARIABLE_DEF[.//LITERAL_PRIVATE and
           following-sibling::VARIABLE_DEF[.//LITERAL_PROTECTED]]"/>
-      <message key="matchxpath.match" value="Private variables must appear after protected variables"/>
+      <message key="matchxpath.match" value="Private fields must appear after protected fields"/>
     </module>
 
     <!-- Проверяет, что protected поля следуют строго за public полями. -->
     <module name="MatchXpath">
       <property name="query" value="//VARIABLE_DEF[.//LITERAL_PROTECTED and
           following-sibling::VARIABLE_DEF[.//LITERAL_PUBLIC]]"/>
-      <message key="matchxpath.match" value="Protected variables must appear after public variables"/>
+      <message key="matchxpath.match" value="Protected fields must appear after public fields"/>
     </module>
 
     <!-- Проверяет, что после объявления региона private не следует объявление protected сущности. -->
