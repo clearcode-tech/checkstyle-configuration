@@ -41,14 +41,14 @@
     <module name="Regexp">
       <property name="format" value="\([a-zA-Z]*(^\))*\s->" />
       <property name="illegalPattern" value="true" />
-      <property name="message" value="There must be specified type of variable in lambda." />
+      <property name="message" value="There must be specified type of lambda parameter." />
     </module>
 
     <!-- Проверяет, что в javadoc'ах нет больше одной пустой строки подряд и в конце каждого предложения есть точка. -->
     <module name="Regexp">
       <property name="format" value="^\s*\*\s(?!@see)[^\n*]*[^.>/?O)]\n\s*\*(\s@|\n|\/)" />
       <property name="illegalPattern" value="true" />
-      <property name="message" value="Must end with point or can't be two empty line in comment." />
+      <property name="message" value="Comment must end with period and have not more than one empty line." />
     </module>
 
     <!-- Проверяет, что комментарии в коде после // имеют пробел. -->
@@ -76,7 +76,7 @@
     <module name="Regexp">
       <property name="format" value="\*\n\s*\*\/" />
       <property name="illegalPattern" value="true" />
-      <property name="message" value="Can't be empty line after end comment." />
+      <property name="message" value="Can't be empty line after end of comment." />
     </module>
 
     <!-- Modifiers -->
