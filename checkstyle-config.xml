@@ -20,6 +20,25 @@
     <!-- Задаёт табуляцию в 4 пробела, а не 8. Иначе модуль проверки длины строки LineLength работает неправильно -->
     <property name="tabWidth" value="4"/>
 
+    <!-- Block -->
+
+    <!-- Проверяет расположение }. -->
+    <module name="RightCurly">
+      <property name="option" value="alone_or_singleline"/>
+    </module>
+
+    <!-- Проверяет расположение {. -->
+    <module name="LeftCurly"/>
+
+    <!-- Проверяет, что нет пустых блоков do, else, for, if, while. -->
+    <module name="EmptyBlock"/>
+
+    <!-- Проверяет наличие фигурные скобки вокруг блоков do, else, for, if, while. -->
+    <module name="NeedBraces"/>
+
+    <!-- Проверяет, что нет пустых блоков catch. -->
+    <module name="EmptyCatchBlock"/>
+
     <!-- Modifiers -->
 
     <!-- Проверяет порядок модификаторов элемента. Например, final private не правильно -->
