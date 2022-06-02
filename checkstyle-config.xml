@@ -32,7 +32,7 @@
     <!-- Проверяет, что нет пустых блоков do, else, for, if, while. -->
     <module name="EmptyBlock"/>
 
-    <!-- Проверяет наличие фигурные скобки вокруг блоков do, else, for, if, while. -->
+    <!-- Проверяет наличие фигурных скобок вокруг блоков do, else, for, if, while. -->
     <module name="NeedBraces"/>
 
     <!-- Проверяет, что нет пустых блоков catch. -->
