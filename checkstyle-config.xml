@@ -7,7 +7,6 @@
   <!-- Проверяет отсутствие символа табуляции('\t') в файлах. -->
   <module name="FileTabCharacter"/>
 
-
   <!-- Miscellaneous-->
 
   <!-- Проверяет, заканчиваются ли файлы пустой строкой. -->
@@ -78,6 +77,25 @@
       <property name="illegalPattern" value="true" />
       <property name="message" value="Can't be empty line after end of comment." />
     </module>
+
+    <!-- Block -->
+
+    <!-- Проверяет расположение }. -->
+    <module name="RightCurly">
+      <property name="option" value="alone_or_singleline"/>
+    </module>
+
+    <!-- Проверяет расположение {. -->
+    <module name="LeftCurly"/>
+
+    <!-- Проверяет, что нет пустых блоков do, else, for, if, while. -->
+    <module name="EmptyBlock"/>
+
+    <!-- Проверяет наличие фигурных скобок вокруг блоков do, else, for, if, while. -->
+    <module name="NeedBraces"/>
+
+    <!-- Проверяет, что нет пустых блоков catch. -->
+    <module name="EmptyCatchBlock"/>
 
     <!-- Modifiers -->
 
@@ -283,9 +301,6 @@
 
     <!-- Проверяет корректно расставленные пробелы. -->
     <module name="WhitespaceAround"/>
-
-    <!-- Проверяет что открывающая скобка на той же строке, что и предшествующее выражение. -->
-    <module name="LeftCurly"/>
 
     <!-- Проверяет что перед символами [., ;, ..., :] нет пробелов и переносов строк. -->
     <module name="NoWhitespaceBefore"/>
