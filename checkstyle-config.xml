@@ -506,6 +506,11 @@
     <!-- Проверяет, что нет лишней ";" в блоках try-with-resources. -->
     <module name="UnnecessarySemicolonInTryWithResources"/>
 
+    <!-- Проверяет расстояние между объявлением переменной и её первым использованием. Максимальное значение промежутка по умолчанию - 3. -->
+    <module name="VariableDeclarationUsageDistance">
+      <property name="validateBetweenScopes" value="true"/>
+    </module>
+
   </module>
 
   <!-- Проверяет что строка не превышает заданного значения -->
