@@ -25,7 +25,7 @@
     <!-- Проверяет порядок модификаторов элемента. Например, final private не правильно -->
     <module name="ModifierOrder"/>
 
-    <!-- Проверяет наличие ненужных final. -->
+    <!-- Проверяет наличие избыточных ключевых слов. -->
     <module name="RedundantModifier"/>
 
     <!--  Naming Conventions -->
