@@ -22,7 +22,7 @@
 
     <!-- Regex -->
 
-    <!-- Проверяет, что нет двух подряд точек.-->
+    <!-- Проверяет, что нет двух точек подряд или через пробелы. -->
     <module name="Regexp">
       <property name="format" value="[^.]\.\s*\.[^.]" />
       <property name="illegalPattern" value="true" />
