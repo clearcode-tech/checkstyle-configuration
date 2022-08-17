@@ -29,11 +29,11 @@
 
     <!-- Regexp -->
 
-    <!-- Проверка, что предложение заканчивается только одним символом конца строки. -->
+    <!-- Проверка, что предложение заканчивается только одним символом конца предложения. -->
     <module name="Regexp">
-      <property name="format" value="[^.]\.\s*\?[&apos;&lt;&apos;\n]" />
+      <property name="format" value="[^.?][.?]\s*[.?][&apos;&lt;&apos;\n]" />
       <property name="illegalPattern" value="true" />
-      <property name="message" value="Can't be two line ending characters in one sentence." />
+      <property name="message" value="Can't be two end-of-sentence characters in one sentence." />
     </module>
 
     <!-- Проверяет наличие пустой строки после {, если перед ним не было переносов строки. -->
