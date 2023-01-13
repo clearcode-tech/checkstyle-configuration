@@ -368,6 +368,83 @@
       <message key="matchxpath.match" value="Private methods must appear after public methods"/>
     </module>
 
+    <!-- Проверяет, что protected методы следуют строго за public. -->
+    <module name="MatchXpath">
+      <property name="query" value="//METHOD_DEF[.//LITERAL_PROTECTED and
+          following-sibling::METHOD_DEF[.//LITERAL_PUBLIC]]"/>
+      <message key="matchxpath.match" value="Protected methods must appear after public methods"/>
+    </module>
+
+    <!-- Проверяет, что private методы следуют строго за protected. -->
+    <module name="MatchXpath">
+      <property name="query" value="//METHOD_DEF[.//LITERAL_PRIVATE and
+          following-sibling::METHOD_DEF[.//LITERAL_PROTECTED]]"/>
+      <message key="matchxpath.match" value="Private methods must appear after protected methods"/>
+    </module>
+
+    <!-- Проверяет, что private поля следуют строго за public. -->
+    <module name="MatchXpath">
+      <property name="query" value="//VARIABLE_DEF[.//LITERAL_PRIVATE and
+      following-sibling::VARIABLE_DEF[.//LITERAL_PUBLIC]]"/>
+      <message key="matchxpath.match" value="Private fields must appear after public fields"/>
+    </module>
+
+    <!-- Проверяет, что private поля следуют строго за protected полями. -->
+    <module name="MatchXpath">
+      <property name="query" value="//VARIABLE_DEF[.//LITERAL_PRIVATE and
+          following-sibling::VARIABLE_DEF[.//LITERAL_PROTECTED]]"/>
+      <message key="matchxpath.match" value="Private fields must appear after protected fields"/>
+    </module>
+
+    <!-- Проверяет, что protected поля следуют строго за public полями. -->
+    <module name="MatchXpath">
+      <property name="query" value="//VARIABLE_DEF[.//LITERAL_PROTECTED and
+          following-sibling::VARIABLE_DEF[.//LITERAL_PUBLIC]]"/>
+      <message key="matchxpath.match" value="Protected fields must appear after public fields"/>
+    </module>
+
+    <!-- Проверяет, что после объявления региона private не следует объявление protected сущности. -->
+    <module name="MatchXpath">
+      <property name="query" value="//SINGLE_LINE_COMMENT[.//COMMENT_CONTENT[@text='region Private\n']
+          and following-sibling::LITERAL_PROTECTED]"/>
+      <message key="matchxpath.match" value="Private region must contains only private methods"/>
+    </module>
+
+    <!-- Проверяет, что после объявления региона private не следует объявление public сущности. -->
+    <module name="MatchXpath">
+      <property name="query" value="//SINGLE_LINE_COMMENT[.//COMMENT_CONTENT[@text='region Private\n']
+          and following-sibling::LITERAL_PUBLIC]"/>
+      <message key="matchxpath.match" value="Private region must contains only private methods"/>
+    </module>
+
+    <!-- Проверяет, что после объявления региона public не следует объявление private сущности. -->
+    <module name="MatchXpath">
+      <property name="query" value="//SINGLE_LINE_COMMENT[.//COMMENT_CONTENT[@text='region Public\n']
+          and following-sibling::LITERAL_PRIVATE]"/>
+      <message key="matchxpath.match" value="Public region must contains only public methods"/>
+    </module>
+
+    <!-- Проверяет, что после объявления региона public не следует объявление protected сущности. -->
+    <module name="MatchXpath">
+      <property name="query" value="//SINGLE_LINE_COMMENT[.//COMMENT_CONTENT[@text='region Public\n']
+          and following-sibling::LITERAL_PROTECTED]"/>
+      <message key="matchxpath.match" value="Public region must contains only public methods"/>
+    </module>
+
+    <!-- Проверяет, что после объявления региона protected не следует объявление public сущности. -->
+    <module name="MatchXpath">
+      <property name="query" value="//SINGLE_LINE_COMMENT[.//COMMENT_CONTENT[@text='region Protected\n']
+          and following-sibling::LITERAL_PUBLIC]"/>
+      <message key="matchxpath.match" value="Protected region must contains only protected methods"/>
+    </module>
+
+    <!-- Проверяет, что после объявления региона protected не следует объявление private сущности. -->
+    <module name="MatchXpath">
+      <property name="query" value="//SINGLE_LINE_COMMENT[.//COMMENT_CONTENT[@text='region Protected\n']
+          and following-sibling::LITERAL_PRIVATE]"/>
+      <message key="matchxpath.match" value="Protected region must contains only protected methods"/>
+    </module>
+
     <!-- Проверяет, что все switch имеют default. -->
     <module name="MissingSwitchDefault"/>
 
