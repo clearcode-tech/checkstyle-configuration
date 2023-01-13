@@ -92,6 +92,13 @@
       <property name="message" value="Can't be specified two dots in a row." />
     </module>
 
+    <!-- Проверяет отсутствие пробелов перед закрывающимся тегом p. -->
+    <module name="Regexp">
+      <property name="format" value="\.\s&lt;" />
+      <property name="illegalPattern" value="true" />
+      <property name="message" value="Can't be space before tag 'p'." />
+    </module>
+
     <!-- Block -->
 
     <!-- Проверяет расположение }. -->
