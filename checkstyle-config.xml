@@ -7,12 +7,19 @@
   <!-- Проверяет отсутствие символа табуляции('\t') в файлах. -->
   <module name="FileTabCharacter"/>
 
-
   <!-- Miscellaneous-->
 
   <!-- Проверяет, заканчиваются ли файлы пустой строкой. -->
   <module name="NewlineAtEndOfFile">
     <property name="fileExtensions" value="java"/>
+  </module>
+
+  <!-- Regexp -->
+
+  <!-- Проверяет, что на одной строке нет более двух действий над stream. -->
+  <module name="RegexpSingleline">
+    <property name="format" value="(?!.util)\.stream\(\)\..*\)\..*\)\." />
+    <property name="message" value="More than 2 action on stream can't be on one line." />
   </module>
 
   <module name="TreeWalker">
@@ -28,6 +35,76 @@
       <property name="illegalPattern" value="true" />
       <property name="message" value="Can't be specified two dots in a row." />
     </module>
+
+    <!-- Regexp -->
+
+    <!-- Проверяет наличие пустой строки после {, если перед ним не было переносов строки. -->
+    <module name="Regexp">
+      <property name="format" value="((?:(\S\)|(try|finally))))\s\{\n." />
+      <property name="illegalPattern" value="true" />
+      <property name="message" value="There must be empty line after the {." />
+    </module>
+
+    <!-- Проверяет наличие типа в параметрах лямбда выражений. -->
+    <module name="Regexp">
+      <property name="format" value="\([a-zA-Z]*(^\))*\s->" />
+      <property name="illegalPattern" value="true" />
+      <property name="message" value="There must be specified type of lambda parameter." />
+    </module>
+
+    <!-- Проверяет, что в javadoc'ах нет больше одной пустой строки подряд и в конце каждого предложения есть точка. -->
+    <module name="Regexp">
+      <property name="format" value="^\s*\*\s(?!@see)[^\n*]*[^.>/?O)]\n\s*\*(\s@|\n|\/)" />
+      <property name="illegalPattern" value="true" />
+      <property name="message" value="Comment must end with period and have not more than one empty line." />
+    </module>
+
+    <!-- Проверяет, что комментарии в коде после // имеют пробел. -->
+    <module name="Regexp">
+      <property name="format" value="^\s*\/\/[^a-zT\s]" />
+      <property name="illegalPattern" value="true" />
+      <property name="message" value="Must be space after //." />
+    </module>
+
+    <!-- Проверяет наличие пустой строки перед концом региона. -->
+    <module name="Regexp">
+      <property name="format" value="[^\s][ \t]*\n[ \t]*[^\n][ \t]*\/\/endregion" />
+      <property name="illegalPattern" value="true" />
+      <property name="message" value="Must be empty line before endregion." />
+    </module>
+
+    <!-- Проверяет отсутствие более одной пустой строки. -->
+    <module name="Regexp">
+      <property name="format" value="\n\n\n" />
+      <property name="illegalPattern" value="true" />
+      <property name="message" value="Must be only one empty line." />
+    </module>
+
+    <!-- Проверяет отсутствие пустой строки перед концом комментария. -->
+    <module name="Regexp">
+      <property name="format" value="\*\n\s*\*\/" />
+      <property name="illegalPattern" value="true" />
+      <property name="message" value="Can't be empty line after end of comment." />
+    </module>
+
+    <!-- Block -->
+
+    <!-- Проверяет расположение }. -->
+    <module name="RightCurly">
+      <property name="option" value="alone_or_singleline"/>
+    </module>
+
+    <!-- Проверяет расположение {. -->
+    <module name="LeftCurly"/>
+
+    <!-- Проверяет, что нет пустых блоков do, else, for, if, while. -->
+    <module name="EmptyBlock"/>
+
+    <!-- Проверяет наличие фигурных скобок вокруг блоков do, else, for, if, while. -->
+    <module name="NeedBraces"/>
+
+    <!-- Проверяет, что нет пустых блоков catch. -->
+    <module name="EmptyCatchBlock"/>
 
     <!-- Modifiers -->
 
@@ -234,9 +311,6 @@
     <!-- Проверяет корректно расставленные пробелы. -->
     <module name="WhitespaceAround"/>
 
-    <!-- Проверяет что открывающая скобка на той же строке, что и предшествующее выражение. -->
-    <module name="LeftCurly"/>
-
     <!-- Проверяет что перед символами [., ;, ..., :] нет пробелов и переносов строк. -->
     <module name="NoWhitespaceBefore"/>
 
@@ -440,6 +514,11 @@
 
     <!-- Проверяет, что нет лишней ";" в блоках try-with-resources. -->
     <module name="UnnecessarySemicolonInTryWithResources"/>
+
+    <!-- Проверяет расстояние между объявлением переменной и её первым использованием. Максимальное значение промежутка по умолчанию - 3. -->
+    <module name="VariableDeclarationUsageDistance">
+      <property name="validateBetweenScopes" value="true"/>
+    </module>
 
   </module>
 
