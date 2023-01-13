@@ -29,6 +29,13 @@
 
     <!-- Regexp -->
 
+    <!-- Проверка, что предложение заканчивается только одним символом конца предложения. -->
+    <module name="Regexp">
+      <property name="format" value="[^.?][.?]\s*[.?][&lt;\n]" />
+      <property name="illegalPattern" value="true" />
+      <property name="message" value="Can't be two end-of-sentence characters in one sentence." />
+    </module>
+
     <!-- Проверяет наличие пустой строки после {, если перед ним не было переносов строки. -->
     <module name="Regexp">
       <property name="format" value="((?:(\S\)|(try|finally))))\s\{\n." />
