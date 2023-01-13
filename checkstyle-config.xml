@@ -80,7 +80,7 @@
 
     <!-- Проверяет, что нет двух точек подряд или через пробелы. -->
     <module name="Regexp">
-      <property name="format" value="[^.]\.\s*\.[^.]" />
+      <property name="format" value="[^.]\.[^\S\r\n]*\.[^.]" />
       <property name="illegalPattern" value="true" />
       <property name="message" value="Can't be specified two dots in a row." />
     </module>
