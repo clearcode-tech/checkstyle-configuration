@@ -27,6 +27,15 @@
     <!-- Задаёт табуляцию в 4 пробела, а не 8. Иначе модуль проверки длины строки LineLength работает неправильно -->
     <property name="tabWidth" value="4"/>
 
+    <!-- Regex -->
+
+    <!-- Проверяет, что нет двух точек подряд или через пробелы. -->
+    <module name="Regexp">
+      <property name="format" value="[^.]\.\s*\.[^.]" />
+      <property name="illegalPattern" value="true" />
+      <property name="message" value="Can't be specified two dots in a row." />
+    </module>
+
     <!-- Regexp -->
 
     <!-- Проверяет наличие пустой строки после {, если перед ним не было переносов строки. -->
