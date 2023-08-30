@@ -4,6 +4,17 @@
         "https://checkstyle.org/dtds/configuration_1_3.dtd">
 <module name="Checker">
 
+  <!--
+      Выключает проверку отсутствия статического импорта в файлах тестов.
+      Данный фильтр нельзя перенести в файл suppresion'ов, потому что он должен быть внутри модуля Checker. Аналогично
+      нельзя перенести рядом с проверкой staticImportCheck, потому что проверка staticImportCheck находится внутри
+      другого модуля.
+  -->
+  <module name="SuppressionSingleFilter">
+    <property name="id" value="staticImportCheck"/>
+    <property name="files" value=".*Test\.java"/>
+  </module>
+
   <!-- Проверяет отсутствие символа табуляции('\t') в файлах. -->
   <module name="FileTabCharacter"/>
 
@@ -28,13 +39,6 @@
     <property name="tabWidth" value="4"/>
 
     <!-- Regexp -->
-
-    <!-- Проверка, что предложение заканчивается только одним символом конца предложения. -->
-    <module name="Regexp">
-      <property name="format" value="[^.?][.?]\s*[.?][&lt;\n]" />
-      <property name="illegalPattern" value="true" />
-      <property name="message" value="Can't be two end-of-sentence characters in one sentence." />
-    </module>
 
     <!-- Проверяет наличие пустой строки после {, если перед ним не было переносов строки. -->
     <module name="Regexp">
@@ -435,11 +439,6 @@
     <!-- Проверяет наличие break/return в case'ах для switch. -->
     <module name="FallThrough"/>
 
-    <!-- Проверяет, что локальная переменная или параметр не переопределяет поле, определенное в том же классе. -->
-    <module name="HiddenField">
-      <property name="ignoreConstructorParameter" value="true"/>
-    </module>
-
     <!-- Проверяет корректность объявления Boolean и Integer. -->
     <module name="IllegalInstantiation">
       <property name="classes" value="java.lang.Boolean, java.lang.Integer"/>
@@ -453,7 +452,17 @@
 
     <!-- Проверяет, что не используются запрещенные выражения. -->
     <module name="IllegalToken">
-      <property name="tokens" value="BAND_ASSIGN, BOR_ASSIGN, BXOR_ASSIGN, COMPACT_CTOR_DEF, DEC, BAND_ASSIGN, DIV_ASSIGN, DO_WHILE, EMPTY_STAT, LITERAL_ASSERT, MINUS_ASSIGN, MOD_ASSIGN, SL_ASSIGN, SR_ASSIGN, STAR_ASSIGN, STATIC_IMPORT, STATIC_INIT, STRICTFP"/>
+      <property name="tokens" value="BAND_ASSIGN, BOR_ASSIGN, BXOR_ASSIGN, COMPACT_CTOR_DEF, DEC, BAND_ASSIGN, DIV_ASSIGN, EMPTY_STAT, LITERAL_ASSERT, MINUS_ASSIGN, MOD_ASSIGN, SL_ASSIGN, SR_ASSIGN, STAR_ASSIGN, STATIC_INIT, STRICTFP"/>
+    </module>
+
+    <!--
+        Проверяет, что не используется статический импорт.
+        Данная проверка была вынесена отдельно, чтобы была возможность отключить статический импорт в тестах, оставив
+        все остальные проверки включенными.
+    -->
+    <module name="IllegalToken">
+      <property name="tokens" value="STATIC_IMPORT"/>
+      <property name="id" value="staticImportCheck"/>
     </module>
 
     <!-- Проверяет отсутствие вложенности при присваиваниях. -->
@@ -485,13 +494,6 @@
       <property name="query" value="//VARIABLE_DEF[.//LITERAL_PRIVATE and
       following-sibling::VARIABLE_DEF[.//LITERAL_PUBLIC]]"/>
       <message key="matchxpath.match" value="Private fields must appear after public fields"/>
-    </module>
-
-    <!-- Проверяет, что private поля следуют строго за protected полями. -->
-    <module name="MatchXpath">
-      <property name="query" value="//VARIABLE_DEF[.//LITERAL_PRIVATE and
-          following-sibling::VARIABLE_DEF[.//LITERAL_PROTECTED]]"/>
-      <message key="matchxpath.match" value="Private fields must appear after protected fields"/>
     </module>
 
     <!-- Проверяет, что protected поля следуют строго за public полями. -->
@@ -619,7 +621,7 @@
     <!-- Задаём значение в 120 символов -->
     <property name="max" value="120"/>
     <!-- Игнорирует строки импортов и пакетов -->
-    <property name="ignorePattern" value="^(package|import) .*"/>
+    <property name="ignorePattern" value="^(package|import|@import) .*"/>
   </module>
 
   <!-- Модуль для задания пути файла исключений. -->
