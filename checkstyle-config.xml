@@ -143,8 +143,10 @@
     <!-- Проверяет, что наименования переменных, параметров и полей не являются недопустимым именем. Недопустимы: record|yield|var|permits|sealed|_. -->
     <module name="IllegalIdentifierName"/>
 
-    <!-- Проверяет, что наименования параметров типизации интерфейса соответствуют шаблону "^[A-Z]$". -->
-    <module name="InterfaceTypeParameterName"/>
+    <!-- Проверяет, что наименования параметров типизации интерфейса соответствуют шаблону "^[A-Z][1-9]?$". -->
+    <module name="InterfaceTypeParameterName">
+      <property name="format" value="^[A-Z][1-9]?$"/>
+    </module>
 
     <!-- Проверяет, что наименования локальных final переменных соответствуют шаблону "^[a-z][a-zA-Z0-9]*$". -->
     <module name="LocalFinalVariableName"/>
