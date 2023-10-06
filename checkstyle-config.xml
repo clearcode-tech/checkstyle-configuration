@@ -4,10 +4,10 @@
         "https://checkstyle.org/dtds/configuration_1_3.dtd">
 <module name="Checker">
 
+  <!-- Miscellaneous-->
+
   <!-- Проверяет отсутствие символа табуляции('\t') в файлах. -->
   <module name="FileTabCharacter"/>
-
-  <!-- Miscellaneous-->
 
   <!-- Проверяет, заканчиваются ли файлы пустой строкой. -->
   <module name="NewlineAtEndOfFile">
