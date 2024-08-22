@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE module PUBLIC
-        "-//Checkstyle//DTD Checkstyle Configuration 1.3//EN"
-        "https://checkstyle.org/dtds/configuration_1_3.dtd">
+    "-//Checkstyle//DTD Checkstyle Configuration 1.3//EN"
+    "https://checkstyle.org/dtds/configuration_1_3.dtd">
 <module name="Checker">
 
   <!--
@@ -15,10 +15,11 @@
     <property name="files" value=".*Test\.java"/>
   </module>
 
-  <!-- Проверяет отсутствие символа табуляции('\t') в файлах. -->
-  <module name="FileTabCharacter"/>
 
   <!-- Miscellaneous-->
+
+  <!-- Проверяет отсутствие символа табуляции('\t') в файлах. -->
+  <module name="FileTabCharacter"/>
 
   <!-- Проверяет, заканчиваются ли файлы пустой строкой. -->
   <module name="NewlineAtEndOfFile">
@@ -324,6 +325,7 @@
       <property name="excludeClassesRegexps" value=".*Cache$"/>
       <property name="excludeClassesRegexps" value=".*Validator$"/>
       <property name="excludeClassesRegexps" value=".*Id$"/>
+      <property name="excludeClassesRegexps" value=".*DTO$"/>
     </module>
 
 
@@ -381,10 +383,11 @@
 
     <!-- Проверяет отсутствие указанных пакетов и классов в проекте -->
     <module name="IllegalImport">
+      <property name="id" value="defaultIllegalImports"/>
       <!-- Запрещаемые классы -->
       <property
-              name="illegalClasses"
-              value="
+        name="illegalClasses"
+        value="
           io.ebean.annotation.TenantId,
           play.libs.Json,
           play.api.libs.json.Json,
@@ -392,7 +395,22 @@
           com.google.inject.Inject,
           com.google.inject.Singleton,
           com.google.inject.Provider,
+          jakarta.validation.constraints.AssertTrue,
+          jakarta.validation.constraints.AssertFalse,
+          jakarta.validation.constraints.Null,
         "
+      />
+    </module>
+
+    <module name="IllegalImport">
+      <property name="id" value="illegalModuleImports"/>
+      <property
+        name="illegalClasses"
+        value="com.google.inject.AbstractModule,"
+      />
+      <message
+              key="import.illegal"
+              value="Using of plain modules is disallowed, use AbstractBusinessModule and descendants"
       />
     </module>
 
@@ -413,9 +431,6 @@
 
     <!-- Проверяет, что нет двойных фигурных скобок при инициализации. -->
     <module name="AvoidDoubleBraceInitialization"/>
-
-    <!-- Проверяет отсутствие использования тернарных условных операций. -->
-    <module name="AvoidInlineConditionals"/>
 
     <!-- Проверяет отсутствие вызова конструктора суперкласса без аргументов. -->
     <module name="AvoidNoArgumentSuperConstructorCall"/>
